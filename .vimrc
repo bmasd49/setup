@@ -20,6 +20,7 @@ syntax on
 set tabstop=4
 set mouse+=a
 set laststatus=2
+set cursorline
 
 if &term =~ '256color'
 	    " Disable Background Color Erase (BCE) so that color schemes
