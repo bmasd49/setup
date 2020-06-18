@@ -118,8 +118,11 @@ fi
 alias date="date -Is"
 alias xopen='xdg-open &>/dev/null'
 alias doc="cd /mnt/c/Users/bmasd/OneDrive/Documents/"
+alias doc2="cd /mnt/c/Users/bmasd/OneDrive/Documents/2-Second\ year"
 alias glog="git log --graph --oneline --decorate"
 
 export INPUTRC=~/.inputrc
+export VISUAL=vim
+export EDITOR="$VISUAL"
 
 export PS1="\[\033[38;5;160m\]\t\[$(tput sgr0)\] \[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;10m\]@\[$(tput sgr0)\] \[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;11m\]\u\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;160m\]>\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;6m\]\W\[$(tput sgr0)\]: \[$(tput sgr0)\]"
