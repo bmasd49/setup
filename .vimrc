@@ -6,13 +6,20 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'morhetz/gruvbox'
 Plug 'preservim/nerdtree' 
 Plug 'kien/ctrlp.vim'
-Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
-colorscheme gruvbox
-set background=dark
+"if &term =~ '256color'
+"    set t_ut=
+"endif
+
+set bg=dark
 let g:gruvbox_contrast_dark='hard'
-set visualbell
+
+colorscheme gruvbox
+
+"set visualbell
 set shiftwidth=4
 set softtabstop=4
 set autoindent
@@ -25,15 +32,10 @@ set laststatus=2
 set cursorline
 set clipboard=unnamedplus
 
-if &term =~ '256color'
-	    " Disable Background Color Erase (BCE) so that color schemes
-		" work properly when Vim is used inside tmux and GNU screen.
-set t_ut=
-endif
-
 let mapleader= " "
 nnoremap <leader>rr <ESC>:w<CR>:!python3 %<CR>
 nnoremap <leader>e :NERDTreeToggle<CR>
+nnoremap <leader>t :terminal<CR>:vert resize 20<CR>
 inoremap jj <ESC>
 nnoremap <Enter> o<ESC>
 
