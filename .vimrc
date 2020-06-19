@@ -9,6 +9,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'lervag/vimtex'
+Plug 'preservim/nerdcommenter'
 call plug#end()
 
 if &term =~ '256color'
