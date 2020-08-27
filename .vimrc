@@ -12,9 +12,6 @@ Plug 'lervag/vimtex'
 Plug 'preservim/nerdcommenter'
 call plug#end()
 
-if &term =~ '256color'
-    set t_ut=
-endif
 
 set bg=dark
 let g:gruvbox_contrast_dark='hard'
@@ -32,7 +29,7 @@ set tabstop=4
 set mouse+=a
 set laststatus=2
 set cursorline
-"set clipboard=unnamedplus
+set clipboard=unnamedplus
 
 let mapleader= " "
 nnoremap <leader>rr <ESC>:w<CR>:!python3 %<CR>
