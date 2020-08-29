@@ -1,6 +1,6 @@
-driveLocation="/mnt/c/Users/bmasd/OneDrive/"
+driveLocation="~/Onedrive"
 alias date="date -Is"
-alias xo='xdg-open &>/dev/null'
+alias open='xdg-open &>/dev/null'
 alias drive="cd $driveLocation"
 alias doc="cd $driveLocation/Documents/"
 alias doc2="cd $driveLocation/Documents/2-SecondYear"
@@ -10,4 +10,5 @@ alias gt="git status"
 alias ga="git add"
 alias gm="git commit -m"
 alias gp="git push origin"
-
+alias syncon="insync start"
+alias syncoff="insync quit"
