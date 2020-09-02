@@ -12,12 +12,16 @@ Plug 'lervag/vimtex'
 Plug 'preservim/nerdcommenter'
 call plug#end()
 
+if &term =~ '256color'
+    set t_ut=
+endif
 
 set bg=dark
-let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_dark='medium'
 
 colorscheme gruvbox
 
+"let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 "set visualbell
 set shiftwidth=4
 set softtabstop=4
@@ -29,10 +33,12 @@ set tabstop=4
 set mouse+=a
 set laststatus=2
 set cursorline
-set clipboard=unnamedplus
+let g:tex_flavor= 'latex'
+"set clipboard=unnamedplus
 
 let mapleader= " "
-nnoremap <leader>rr <ESC>:w<CR>:!python3 %<CR>
+autocmd FileType python nnoremap <leader>rr <ESC>:w<CR>:!python3 %<CR>
+autocmd FileType c nnoremap <leader>rr <ESC>:w<CR>:!gcc % -o %<.out && ./%<.out <CR>
 nnoremap <leader>e :NERDTreeToggle<CR>
 nnoremap <leader>t :terminal<CR>:vert resize 20<CR>
 inoremap jj <ESC>
