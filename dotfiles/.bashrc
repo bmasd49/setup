@@ -126,7 +126,7 @@ export PS1="\[\033[38;5;160m\]\A\[$(tput sgr0)\] \[$(tput sgr0)\]\[$(tput bold)\
 
 clipboard=/tmp/myClipboard              #Clipboard location
 
-function scopy {						#Copy files to clipboard 
+function ccopy {						#Copy files to clipboard 
 	if [ -d $clipboard ]; then
 		rm -rf $clipboard/{,.[!.],..?}*
 	else
@@ -137,7 +137,7 @@ function scopy {						#Copy files to clipboard
 	ls -A $clipboard
 }
 
-function scut {							#Cut files to clipboard
+function ccut {							#Cut files to clipboard
 	if [ -d $clipboard ]; then
 		rm -rf $clipboard/{,.[!.],..?}*
 	else
@@ -151,7 +151,7 @@ function scut {							#Cut files to clipboard
 	fi
 }
 
-function spaste {						#Paste files from clipboard
+function cpaste {						#Paste files from clipboard
 	if [ -d $clipboard ] &&  [ ! -z "$(ls -A $clipboard)" ]
 	then
 		cp -r $clipboard/. .
@@ -162,6 +162,13 @@ function spaste {						#Paste files from clipboard
 	fi
 }
 
-function clipboard {					#Show clipboard
+function cclear {						#Clear clipboard
+	if [ -d $clipboard ]; then
+		rm -rf $clipboard/{,.[!.],..?}*
+	fi
+	echo "Done"
+}
+
+function cshow {					#Show clipboard
 	ls -A $clipboard
 }
