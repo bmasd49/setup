@@ -121,4 +121,47 @@ export INPUTRC=~/.inputrc
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
+#My favorite interface
 export PS1="\[\033[38;5;160m\]\A\[$(tput sgr0)\] \[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;10m\]@\[$(tput sgr0)\] \[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;11m\]\u\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;160m\]>\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;6m\]\W\[$(tput sgr0)\]: \[$(tput sgr0)\]"
+
+clipboard=/tmp/myClipboard              #Clipboard location
+
+function scopy {						#Copy files to clipboard 
+	if [ -d $clipboard ]; then
+		rm -rf $clipboard/{,.[!.],..?}*
+	else
+		mkdir $clipboard
+	fi
+	cp -r $@ $clipboard
+	echo "Files copied: "
+	ls -A $clipboard
+}
+
+function scut {							#Cut files to clipboard
+	if [ -d $clipboard ]; then
+		rm -rf $clipboard/{,.[!.],..?}*
+	else
+		mkdir $clipboard
+	fi
+	cp -r $@ $clipboard
+	echo "Files cut: "
+	ls -A $clipboard
+	if [ -e $clipboard/$@ ]; then
+		rm -rf $@
+	fi
+}
+
+function spaste {						#Paste files from clipboard
+	if [ -d $clipboard ] &&  [ ! -z "$(ls -A $clipboard)" ]
+	then
+		cp -r $clipboard/. .
+		echo "Files pasted: "
+		ls -A $clipboard
+	else
+		echo "Clipboard is empty"
+	fi
+}
+
+function clipboard {					#Show clipboard
+	ls -A $clipboard
+}
