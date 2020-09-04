@@ -1,4 +1,5 @@
-driveLocation="~/OneDrive"
+driveLocation="~/OneDrive/"
+#driveLocation="/mnt/c/Users/bmasd/OneDrive/"
 alias off="poweroff"
 alias date="date -Is"
 alias open='xdg-open &>/dev/null'
