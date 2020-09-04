@@ -13,9 +13,9 @@ fi
 echo "Okay, let's go"
 
 installEssentialPackages () {
-	apt update
-	apt upgrade
-	apt install build-essential cmake vim python3-dev texlive-latex-extra
+	sudo apt update
+	sudo apt upgrade
+	sudo apt install build-essential cmake vim python3-dev texlive-latex-extra
 }
 
 copyDotFiles () {
@@ -26,7 +26,7 @@ copyDotFiles () {
 installChrome () {
 	if ! dpkg-query -l google-chrome-stable >/dev/null 2>&1; then             #If chrome is not installed
 		wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P /tmp/
-		apt install /tmp/google-chrome-stable_current_amd64.deb
+		sudo apt install /tmp/google-chrome-stable_current_amd64.deb
 	else 
 		echo "Chrome has been installed already"
 	fi
