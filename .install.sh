@@ -3,14 +3,14 @@
 echo "Hello $USER, you are about to install bmasd49's Linux setup."
 
 read -p "Are you sure that you want to do this? [y/n] " -r
-echo    # (optional) move to a new line
+echo 
 
 if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
-    [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1 # handle exits from shell or function but don't exit interactive shell
+    [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1 #exit
 fi
 
-echo "Okay then"
+echo "Okay, let's go"
 
 installEssentialPackages () {
 	apt update
