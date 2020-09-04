@@ -20,11 +20,11 @@ installEssentialPackages () {
 
 copyDotFiles () {
 	cp -r ./dotfiles/. ~
-	source ~/.bashrc
+	source ~/.profile
 }
 
 installChrome () {
-	if ! dpkg-query -l google-chrome-stable >/dev/null 2>&1; then             #If chrome is not installed
+	if [ ! dpkg-query -l google-chrome-stable >/dev/null 2>&1 ]; then             #If chrome is not installed
 		wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P /tmp/
 		sudo apt install /tmp/google-chrome-stable_current_amd64.deb
 	else 
@@ -33,7 +33,7 @@ installChrome () {
 }
 
 installVimPlugins () {
-	if test -f ~/.vim/autoload/plug.vim; then                                 #If plug.vim is not found
+	if [ ! -f ~/.vim/autoload/plug.vim ]; then                                 #If plug.vim is not found
 		curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 		vim +'PlugInstall --sync' +qa
 		python3 ~/.vim/plugged/YouCompleteMe/install.py --clangd-completer
@@ -43,7 +43,7 @@ installVimPlugins () {
 }
 
 installBamboo () {
-	if ! dpkg-query -l ibus-bamboo >/dev/null 2>&1; then 			 #If ibus-bamboo is not installed
+	if [ ! dpkg-query -l ibus-bamboo >/dev/null 2>&1 ]; then 			 #If ibus-bamboo is not installed
 		sudo add-apt-repository ppa:bamboo-engine/ibus-bamboo
 		sudo apt-get update
 		sudo apt-get install ibus-bamboo
