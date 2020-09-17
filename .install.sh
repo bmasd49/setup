@@ -19,7 +19,7 @@ installEssentialPackages () {
 }
 
 copyDotFiles () {
-	cp -r ./dotfiles/. ~
+	cp -sf $(cd "$(dirname "$0")" && pwd)/dotfiles/{.bash*,.vimrc,.inputrc,.profile} ~
 	source ~/.profile
 }
 

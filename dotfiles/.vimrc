@@ -21,7 +21,7 @@ let g:gruvbox_contrast_dark='medium'
 
 colorscheme gruvbox
 
-set visualbell
+"set visualbell
 set shiftwidth=4
 set softtabstop=4
 set autoindent
@@ -33,7 +33,7 @@ set mouse+=a
 set laststatus=2
 set cursorline
 let g:tex_flavor= 'latex'
-"set clipboard=unnamedplus
+set clipboard=unnamedplus
 
 let mapleader= " "
 autocmd FileType python nnoremap <leader>r <ESC>:w<CR>:!python3 %<CR>

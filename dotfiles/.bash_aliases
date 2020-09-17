@@ -1,5 +1,23 @@
-driveLocation="~/OneDrive/"
-#driveLocation="/mnt/c/Users/bmasd/OneDrive/"
+alias myip='echo $(wget -qO - https://api.ipify.org)'
+
+if uname -r | grep microsoft &> /dev/null; then
+	userDir=''
+	if [ -d /mnt/c/Users/bmasd/ ]; then
+		userDir='bmasd'
+	else
+		if [ -d /mnt/c/Users/BM/ ]; then
+			userDir='BM'
+		fi
+	fi
+	if [ userDir != '' ]; then
+		driveLocation="/mnt/c/Users/$userDir/OneDrive"
+	else 
+		echo "Windows user folder not found"
+	fi
+else
+	driveLocation="~/OneDrive"
+fi
+
 alias off="poweroff"
 alias date="date -Is"
 alias open='xdg-open &>/dev/null'
