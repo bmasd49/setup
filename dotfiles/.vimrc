@@ -35,6 +35,10 @@ set cursorline
 let g:tex_flavor= 'latex'
 set clipboard=unnamedplus
 
+silent !mkdir -p /tmp/vimUndo
+set undodir=/tmp/vimUndo
+set undofile
+
 let mapleader= " "
 autocmd FileType python nnoremap <leader>r <ESC>:w<CR>:!python3 %<CR>
 autocmd FileType c nnoremap <leader>r <ESC>:w<CR>:!gcc % -o %<.out && ./%<.out <CR>
@@ -42,7 +46,3 @@ nnoremap <leader>e :NERDTreeToggle<CR>
 nnoremap <leader>t :terminal<CR>:vert resize 20<CR>
 inoremap jj <ESC>
 nnoremap <Enter> o<ESC>
-
-
-
-
