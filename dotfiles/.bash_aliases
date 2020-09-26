@@ -1,9 +1,12 @@
 alias myip='echo $(wget -qO - https://api.ipify.org)'
-alias off="poweroff -f"
-alias reboot="reboot -f"
+alias off="poweroff"
+#alias reboot="reboot -f"
 alias date="date -Is"
 alias open='xdg-open &>/dev/null'
 alias cam='droidcam &>/dev/null'
+alias vrc='vim ~/.vimrc'
+alias brc='vim ~/.bashrc'
+alias bal='vim ~/.bash_aliases'
 
 if uname -r | grep microsoft &> /dev/null; then
 	userDir=''
