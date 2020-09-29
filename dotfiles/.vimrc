@@ -13,25 +13,22 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 call plug#end()
 
-
 " Disable Background Color Erase to avoid annoying ``color bleeding" on 256color terminal
 if &term =~ '256color'
 	set t_ut=
 endif
-
 
 " set colorscheme
 set bg=dark
 let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 
-
 " some basic settings
 set noerrorbells visualbell t_vb=
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
-"set updatetime=300
+set updatetime=300
 set cmdheight=2
 set cursorline
 set nowrap
@@ -42,10 +39,11 @@ set relativenumber
 set hidden
 set mouse+=a
 set laststatus=2
+set spell
+setlocal spell spelllang=en_us
 
 set clipboard=unnamedplus
-"enable multiple pasting from clipboard in visual mode:
-xnoremap <silent> p p:let @+=@0<CR>:let @"=@0<CR>
+xnoremap <silent> p p:let @+=@0<CR>:let @"=@0<CR> "enable multiple pasting from clipboard in visual mode:
 
 "creating undo files, here I chose /tmp to store them
 call mkdir("/tmp/vimUndo", "p", 0700)
@@ -89,9 +87,6 @@ inoremap <silent><expr> <Tab>
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
 
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
@@ -106,3 +101,4 @@ function! s:show_documentation()
     call CocActionAsync('doHover')
   endif
 endfunction
+

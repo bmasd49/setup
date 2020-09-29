@@ -117,7 +117,7 @@ if ! shopt -oq posix; then
 fi
 
 
-export INPUTRC=~/.inputrc
+export INPUTRC=$HOME/inputrc
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
@@ -171,4 +171,18 @@ function cclear {						#Clear clipboard
 
 function cshow {					#Show clipboard
 	ls -A $clipboard
+}
+
+function makelatex {
+	if [ $# -eq 0 ]; then
+		fileName="default"
+	else
+		fileName=$1
+	fi
+	if [ -f $driveLocation/Documents/LatexTemplate.txt ]; then
+		cp $driveLocation/Documents/LatexTemplate.txt ./$fileName.tex
+		echo "$fileName.tex was created"
+	else 
+		echo "Error Latex template is not found"
+	fi
 }

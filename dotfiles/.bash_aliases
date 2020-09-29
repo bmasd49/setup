@@ -1,6 +1,5 @@
 alias myip='echo $(wget -qO - https://api.ipify.org)'
 alias off="poweroff"
-#alias reboot="reboot -f"
 alias date="date -Is"
 alias open='xdg-open &>/dev/null'
 alias cam='droidcam &>/dev/null'
@@ -23,7 +22,7 @@ if uname -r | grep microsoft &> /dev/null; then
 		echo "Windows user folder not found"
 	fi
 else
-	driveLocation="~/OneDrive"
+	driveLocation="$HOME/OneDrive"
 fi
 
 alias drive="cd $driveLocation"
