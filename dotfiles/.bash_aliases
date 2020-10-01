@@ -6,6 +6,9 @@ alias cam='droidcam &>/dev/null'
 alias vrc='vim ~/.vimrc'
 alias brc='vim ~/.bashrc'
 alias bal='vim ~/.bash_aliases'
+alias src='source ~/.profile'
+alias updateall='sudo apt update && sudo apt upgrade'
+alias theme='bash -c  "$(wget -qO- https://git.io/vQgMr)"'
 
 if uname -r | grep microsoft &> /dev/null; then
 	userDir=''
