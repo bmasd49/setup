@@ -14,6 +14,7 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " Disable Background Color Erase to avoid annoying ``color bleeding" on 256color terminal
+"
 if &term =~ '256color'
 	set t_ut=
 endif
@@ -23,8 +24,11 @@ set bg=dark
 let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 
+"Color column
+set colorcolumn=80
 " some basic settings
 set noerrorbells visualbell t_vb=
+set noswapfile
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
@@ -39,8 +43,18 @@ set relativenumber
 set hidden
 set mouse+=a
 set laststatus=2
-set spell
-setlocal spell spelllang=en_us
+set incsearch
+
+" spellcheck
+set spell spelllang=en_us
+hi clear SpellBad                                                
+hi SpellBad cterm=underline                                      
+hi clear SpellRare                                               
+hi SpellRare cterm=underline                                     
+hi clear SpellCap                                                
+hi SpellCap cterm=underline                                      
+hi clear SpellLocal
+hi SpellLocal cterm=underline
 
 set clipboard=unnamedplus
 xnoremap <silent> p p:let @+=@0<CR>:let @"=@0<CR> "enable multiple pasting from clipboard in visual mode:
@@ -53,21 +67,35 @@ set undofile
 "set latex as tex flavor
 let g:tex_flavor= 'latex'
 
-
 let mapleader=" "
-autocmd FileType python nnoremap <leader>r <ESC>:w<CR>:!python3 %<CR>
-autocmd FileType c nnoremap <leader>r <ESC>:w<CR>:!gcc % -o %<.out && ./%<.out <CR>
+inoremap jj <ESC>
+
+augroup LatexStuff
+	autocmd!
+	autocmd FileType tex setlocal wrap nolist linebreak breakat=\ 
+	autocmd FileType tex nnoremap j gj
+	autocmd FileType tex nnoremap k gk
+	autocmd FileType tex vnoremap j gj
+	autocmd FileType tex vnoremap k gk
+	autocmd FileType tex nnoremap <leader>r \\ll
+	autocmd FileType tex nnoremap <leader>a <ESC>i\begin{align*}<CR><CR>\end{align*}<ESC>ki<TAB>
+	autocmd FileType tex nnoremap <leader>if <ESC>i\begin{figure}[!ht]<CR>\centering<CR>\includegraphics[width=0.7\textwidth]{}<CR>\caption{}<CR>\end{figure}<ESC>2k$i
+	autocmd FileType tex nnoremap <leader>ic <ESC>i$^\circ$C
+	autocmd FileType tex nnoremap <leader>r <ESC>:w<CR>
+	autocmd FileType tex nnoremap <leader>z <ESC>1z=w
+	autocmd FileType tex nnoremap <leader>& <ESC>?=<CR>i&<ESC>$
+augroup END
+
+autocmd FileType python nnoremap <leader>r <ESC>:w<CR>:!clear;python3 %<CR>
+autocmd FileType c,cpp nnoremap <leader>r <ESC>:w<CR>:!clear;g++ % -o %<.out && ./%<.out <CR>
 nnoremap <leader>e :NERDTreeToggle<CR>
-nnoremap <leader>t :terminal<CR>:vert resize 20<CR>
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fg :GFiles<CR>
-inoremap jj <ESC>
 nnoremap <Enter> o<ESC>
 inoremap <c-k> <up>
 inoremap <c-j> <down>
 inoremap <c-h> <left>
 inoremap <c-l> <right>
-
 " COC stuff:
 "
 " Go to definition
@@ -94,6 +122,18 @@ nmap <leader>f  <Plug>(coc-format-selected)
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
+let g:coc_global_extensions = [
+			\'coc-git', 
+			\'coc-yank', 
+			\'coc-marketplace', 
+			\'coc-fzf-preview', 
+			\'coc-vimtex', 
+			\'coc-sh', 
+			\'coc-python', 
+			\'coc-clangd', 
+			\'coc-json',
+			\]
+
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -101,4 +141,9 @@ function! s:show_documentation()
     call CocActionAsync('doHover')
   endif
 endfunction
+
+"Coc Yank stuff
+"
+nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
+let g:vimtex_imaps_leader = ';'
 
